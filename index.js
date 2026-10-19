@@ -1,4 +1,4 @@
-const num = 30;
+const num = Number(30);
 
 console.log((num % 2 === 0 || num % 3 === 0 || num % 5 === 0) && 1);
 
