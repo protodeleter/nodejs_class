@@ -2,4 +2,4 @@ const greet = function () {
   console.log('hello');
 };
 
-module.exports = greet;
+module.exports = [greet];
