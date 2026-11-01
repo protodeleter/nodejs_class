@@ -9,7 +9,7 @@ function task4() {
     const content = [
         "firstline \r test \r firstline",
         "secondline \r secondline ",
-        "asfasf \rtest\rtest" ,
+        "thirdline \rthirdline\rthirdline" ,
         "asfasf \rtest",
         "asfasf \rtest",
         "asfasf \rtest",
@@ -32,19 +32,24 @@ function task4() {
             fs.writeFileSync( file, String(content[i]), ()=>{});
         }
 
+        let file_lines = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')
 
         if( i===0) {
-            first = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[0]
+            if(file_lines[0]) {
+                first = file_lines[0]
+            }
         }
 
         if ( i===1 ) {
-            second = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[0] + fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[1]
+            if (file_lines[0] && file_lines[1]) {
+                second = file_lines[0] +"\r"+ file_lines[1]
+            }
         }
 
         if ( i===2 ) {
-            third = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[0]+ "\r" +
-                fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[1]+ "\r" +
-                fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[2] + "\r"
+            if (file_lines[0] && file_lines[1] && file_lines[2]) {
+                third = file_lines[0] +"\r"+ file_lines[1] +"\r"+ file_lines[2]
+            }
         }
 
     }
