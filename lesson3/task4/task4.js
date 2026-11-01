@@ -4,23 +4,25 @@ const fs = require('node:fs');
 
 function task4() {
 
-
     const files = ['c1', 'c2' , 'c3', 'c4', 'c5', 'c6', 'c7', 'c8' , 'c9' , 'c10'];
 
     const content = [
-        "asfasf\r\ntest\r\nascascasc",
-        "asfasf \r\n test ",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
-        "asfasf \r\n test",
+        "firstline \r test \r firstline",
+        "secondline \r secondline ",
+        "asfasf \rtest\rtest" ,
+        "asfasf \rtest",
+        "asfasf \rtest",
+        "asfasf \rtest",
+        "asfasf \rtest",
+        "asfasf \rtest",
+        "asfasf \rtest",
+        "asfasf \rtest",
     ];
 
-    fs.writeFileSync(__dirname + "/result.txt", "", () => {});
+
+    let first = "";
+    let second = "";
+    let third = "";
 
     for (let i = 0; i <= files.length - 1; i++) {
 
@@ -30,10 +32,24 @@ function task4() {
             fs.writeFileSync( file, String(content[i]), ()=>{});
         }
 
+
+        if( i===0) {
+            first = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[0]
+        }
+
+        if ( i===1 ) {
+            second = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[0] + fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[1]
+        }
+
+        if ( i===2 ) {
+            third = fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[0]+ "\r" +
+                fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[1]+ "\r" +
+                fs.readFileSync(__dirname + "/" + files[i] + ".txt" , 'utf-8').split('\r')[2] + "\r"
+        }
+
     }
 
-
-    console.log(fs.readFileSync(__dirname + "/" + files[0] + ".txt" , 'utf-8').split('\r\n'))
+    fs.writeFileSync(__dirname + "/result.txt", first + "\r" + second + "\r" + third, () => {});
 
 }
 
