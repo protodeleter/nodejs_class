@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "johndoe",
+      "email": "john.doe@example.com",
+      "name": {
+        "first": "John",
+        "last": "Doe"
+      },
+      "age": 32,
+      "role": "admin",
+      "active": true,
+      "created": "2023-01-15"
+    },
+    {
+      "id": 2,
+      "username": "janedoe",
+      "email": "jane.doe@example.com",
+      "name": {
+        "first": "Jane",
+        "last": "Doe"
+      },
+      "age": 28,
+      "role": "user",
+      "active": true,
+      "created": "2023-02-20"
+    },
+    {
+      "id": 3,
+      "username": "alexsmith",
+      "email": "alex.smith@example.com",
+      "name": {
+        "first": "Alex",
+        "last": "Smith"
+      },
+      "age": 41,
+      "role": "moderator",
+      "active": false,
+      "created": "2022-11-05"
+    }
+  ]
+}
