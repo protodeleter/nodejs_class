@@ -25,42 +25,39 @@ const fileReader = async () => {
 
 
 const fileWriteer = () => {
+    let a = fs.readFileSync("file.txt", "utf8").trimEnd().split("\n");
+    let b = fs.readFileSync("file2.txt", "utf8").trimEnd().split("\n");
+    let c = fs.readFileSync("file3.txt", "utf8").trimEnd().split("\n");
 
-    const files_to_write = ["file.txt", "file2.txt" , "file3.txt"];
+    let index = 0;
+    let count = 1;
+    let result = "";
 
+    while (index < a.length || index < b.length || index < c.length) {
 
-
-    for (let i=0; i < files_to_write.length; i++) {
-        const file_path = __dirname+"/" + files_to_write[i];
-        const file_exists = fs.existsSync(file_path );
-        if ( !file_exists ) {
-            fs.writeFile( file_path, "", () => {});
-        }
-    }
-
-
-
-    for (let i=0; i<files_to_write.length; i++) {
-        const file_path = __dirname+"/" + files_to_write[i];
-
-        const current_file = fs.readFileSync(file_path, 'utf-8');
-
-        const lines_split = current_file.split('\n');
-
-        console.log(lines_split)
-
-        for (let j=0; j<lines_split.length; j++) {
-
-            fs.appendFile(__dirname + "/newf.txt", lines_split[i] + "\r",() => {});
-
+        for (let j = index; j < index + count; j++) {
+            if (j < a.length) {
+                result += a[j] + "\n";
+            }
         }
 
+        for (let j = index; j < index + count; j++) {
+            if (j < b.length) {
+                result += b[j] + "\n";
+            }
+        }
 
+        for (let j = index; j < index + count; j++) {
+            if (j < c.length) {
+                result += c[j] + "\n";
+            }
+        }
+
+        index = index + count;
+        count++;
     }
 
-
-
-
+    fs.writeFileSync("newf.txt", result);
 }
 
 
