@@ -25,39 +25,47 @@ const fileReader = async () => {
 
 
 const fileWriteer = () => {
-    let a = fs.readFileSync("file.txt", "utf8").trimEnd().split("\n");
-    let b = fs.readFileSync("file2.txt", "utf8").trimEnd().split("\n");
-    let c = fs.readFileSync("file3.txt", "utf8").trimEnd().split("\n");
+    const fileWriteer = () => {
+        const names = ["file.txt", "file2.txt", "file3.txt"];
+        const files = [];
 
-    let index = 0;
-    let count = 1;
-    let result = "";
+        for (let i = 0; i < names.length; i++) {
+            let text = fs.readFileSync(names[i], "utf8");
+            files.push(text ? text.trimEnd().split("\n") : []);
+        }
 
-    while (index < a.length || index < b.length || index < c.length) {
+        let index = 0;
+        let count = 1;
+        let result = "";
+        let hasLines = true;
 
-        for (let j = index; j < index + count; j++) {
-            if (j < a.length) {
-                result += a[j] + "\n";
+        while (hasLines) {
+            hasLines = false;
+
+            for (let i = 0; i < files.length; i++) {
+                if (index < files[i].length) {
+                    hasLines = true;
+                }
+            }
+
+            if (hasLines) {
+                for (let i = 0; i < files.length; i++) {
+                    for (let j = index; j < index + count; j++) {
+                        if (j < files[i].length) {
+                            result += files[i][j] + "\n";
+                        }
+                    }
+                }
+
+                index = index + count;
+                count++;
             }
         }
 
-        for (let j = index; j < index + count; j++) {
-            if (j < b.length) {
-                result += b[j] + "\n";
-            }
-        }
+        fs.writeFileSync("newf.txt", result);
+    };
 
-        for (let j = index; j < index + count; j++) {
-            if (j < c.length) {
-                result += c[j] + "\n";
-            }
-        }
-
-        index = index + count;
-        count++;
-    }
-
-    fs.writeFileSync("newf.txt", result);
+    fileWriteer();
 }
 
 
